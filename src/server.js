@@ -2,6 +2,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import postRoutes from './routes/postRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 
 //create express
 const app = express();
@@ -16,6 +17,7 @@ app.use(morgan('tiny'));
 
 //connect router to main application
 app.use('/api/posts', postRoutes);
+app.use('/categories', categoryRoutes);
 
 //404 middleware if cant be found by existing routes
 app.use((req, res, next) => {
