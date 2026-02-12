@@ -1,5 +1,6 @@
 import { param, body } from 'express-validator';
 import { handleValidationErrors } from './handleValidationErrors.js';
+import { getAllCategories } from '../services/categoryService.js';
 //build parameter
 export const validateId = [
   //defines input validation chain for id
@@ -29,7 +30,22 @@ export const validateUniqueName = [
     .withMessage('Name must be a string')
     .bail()
     .isLength({ min: 3 })
-    .withMessage('Name must be at least 3 characters long'),
+    .withMessage('Name must be at least 3 characters long')
+    .bail()
+    .custom((valueExist) => {
+      //grab all categories
+      const categories = getAllCategories();
+      //loop through categories and convert to lowercase
+      //seeing if category equals the value entered
+      const exists = categories.some(
+        (category) => category.name.toLowerCase() === valueExist.toLowerCase(),
+      );
+      //if value entered matches, error is thrown
+      if (exists) {
+        throw new Error(`Category name must be unique`);
+      }
+      return true;
+    }),
 
   handleValidationErrors,
 ];

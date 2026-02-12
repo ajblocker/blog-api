@@ -15,10 +15,10 @@ import {
 //create router
 const router = express.Router();
 //add routes and call controller handler
-router.get('/', validateUniqueName, getAllCategoriesHandler);
+router.get('/', getAllCategoriesHandler);
 router.get('/:id', validateId, getCategoryByIdHandler);
-router.post('/', createCategoryHandler);
-router.put('/:id', validateId, updateCategoryHandler);
+router.post('/', validateUniqueName, createCategoryHandler);
+router.put('/:id', validateId, validateUniqueName, updateCategoryHandler);
 router.delete('/:id', validateId, deleteCategoryHandler);
 //export router to connect to main server
 export default router;
