@@ -16,6 +16,9 @@ export const validateId = [
 
 export const validateUniqueName = [
   body('name')
+    //check if its a string
+    .isString()
+    .withMessage('Name must be a string')
     //make sure category name exists and check against falsy values
     .exists({ values: 'falsy' })
     //if field doesn't exist == falsy values, give an error message
@@ -25,10 +28,6 @@ export const validateUniqueName = [
     //if it doesn't fail, sanitize
     .trim()
     .escape()
-    //check if its a string
-    .isString()
-    .withMessage('Name must be a string')
-    .bail()
     .isLength({ min: 3 })
     .withMessage('Name must be at least 3 characters long')
     .bail()

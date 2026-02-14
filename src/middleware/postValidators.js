@@ -131,7 +131,7 @@ export const validatePostQuery = [
   //validation for limit
   query('limit')
     .optional()
-    .isInt({ min: 0, max: 50 })
+    .isInt({ min: 1, max: 50 })
     .withMessage('limit must be an integer between 1 and 50'),
 
   handleValidationErrors,

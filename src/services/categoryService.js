@@ -35,7 +35,7 @@ export function createCategory(categoryData) {
 export function updateCategory(id, updateData) {
   const updatedCategory = update(id, updateData);
   //check if category exist or not
-  if (updateCategory) {
+  if (updatedCategory) {
     return updatedCategory;
   } else {
     //throw an error to forward to error handler

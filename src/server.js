@@ -17,7 +17,7 @@ app.use(morgan('tiny'));
 
 //connect router to main application
 app.use('/api/posts', postRoutes);
-app.use('/categories', categoryRoutes);
+app.use('/api/categories', categoryRoutes);
 
 //404 middleware if cant be found by existing routes
 app.use((req, res, next) => {
